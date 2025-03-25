@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 export default function Login() {
@@ -8,11 +8,18 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const router = useRouter();
 
+  useEffect(() => { 
+    const savedEmail = sessionStorage.getItem("email");
+    if (savedEmail) {
+      router.push("/tasks");
+    }
+  }, [router]);
+
   const handleLogin = (e: any) => {
     e.preventDefault()
     if(email === "123@gmail.com" && password === "a") {
       alert("Logged in");
-      console.log(router)
+      sessionStorage.setItem("email", email);
       router.push("/tasks");
     } else {
       alert("Invalid credentials");

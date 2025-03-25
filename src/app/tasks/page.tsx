@@ -16,11 +16,17 @@ export default function Tasks() {
     }
   }, [])
 
+  const logOut = () => {
+    sessionStorage.removeItem("email");
+    router.push('/login');
+  }
+
   return (
     <>
       <Link href='../'>
         <button>Home</button>
       </Link>
+      <button onClick={logOut}>Logout</button>
       <h1>Tasks</h1>
       { user ? <p>Welcome {user}</p> : <p>Loading...</p> }
     </>
