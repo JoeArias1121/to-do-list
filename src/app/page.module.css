@@ -166,3 +166,7 @@ a.secondary {
     filter: invert();
   }
 }
+
+.login-button {
+  background-color: red;
+}

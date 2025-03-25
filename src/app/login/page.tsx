@@ -1,0 +1,36 @@
+"use client";
+import Link from "next/link";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+
+export default function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const router = useRouter();
+
+  const handleLogin = (e: any) => {
+    e.preventDefualt()
+    if(email === "123@gmail.com" && password === "a") {
+      alert("Logged in");
+      console.log(router)
+      router.push("/tasks");
+    } else {
+      alert("Invalid credentials");
+    }
+  }
+  return (
+    <>
+      <Link href="../">
+        <button>Home</button>
+      </Link>
+      <h1>Login</h1>
+      <form className="login-form" onSubmit={handleLogin}>
+        <input type="email" placeholder="123@gmail.com" onChange={e => setEmail(e.target.value)}/>
+        <input type="password" placeholder="password" onChange={e => setPassword(e.target.value)}/>
+        <button type="submit">Login</button>
+      </form>
+      <h1>Email: {email}</h1>
+      <h1>Password: {password}</h1>
+    </>
+  );
+}
