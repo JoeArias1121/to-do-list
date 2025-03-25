@@ -40,3 +40,9 @@ a {
     color-scheme: dark;
   }
 }
+
+.active {
+  font-weight: bold;
+  text-decoration: underline;
+  color: lightskyblue;
+}

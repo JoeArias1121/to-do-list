@@ -1,11 +1,17 @@
 "use client";
 import { useState, useEffect } from "react";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 export default function Tasks() {
   const [user, setUser] = useState<string | null>(null);
   const router = useRouter();
+
+  useEffect(() => {
+    const user = sessionStorage.getItem("email");
+    if (!user) {
+      router.push('/login');
+    }
+  }, [router]);
 
   useEffect(() => {
     const loggedInUser = "123@gmail.com"
@@ -23,9 +29,6 @@ export default function Tasks() {
 
   return (
     <>
-      <Link href='../'>
-        <button>Home</button>
-      </Link>
       <button onClick={logOut}>Logout</button>
       <h1>Tasks</h1>
       { user ? <p>Welcome {user}</p> : <p>Loading...</p> }

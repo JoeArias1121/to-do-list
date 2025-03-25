@@ -27,9 +27,6 @@ export default function Login() {
   }
   return (
     <>
-      <Link href="/">
-        <button>Home</button>
-      </Link>
       <h1>Login</h1>
       <form className="login-form" onSubmit={handleLogin}>
         <input type="email" placeholder="123@gmail.com" value={email} onChange={e => setEmail(e.target.value)}/>
