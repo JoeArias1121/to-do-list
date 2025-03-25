@@ -9,7 +9,7 @@ export default function Login() {
   const router = useRouter();
 
   const handleLogin = (e: any) => {
-    e.preventDefualt()
+    e.preventDefault()
     if(email === "123@gmail.com" && password === "a") {
       alert("Logged in");
       console.log(router)
@@ -20,13 +20,13 @@ export default function Login() {
   }
   return (
     <>
-      <Link href="../">
+      <Link href="/">
         <button>Home</button>
       </Link>
       <h1>Login</h1>
       <form className="login-form" onSubmit={handleLogin}>
-        <input type="email" placeholder="123@gmail.com" onChange={e => setEmail(e.target.value)}/>
-        <input type="password" placeholder="password" onChange={e => setPassword(e.target.value)}/>
+        <input type="email" placeholder="123@gmail.com" value={email} onChange={e => setEmail(e.target.value)}/>
+        <input type="password" placeholder="password" value={password} onChange={e => setPassword(e.target.value)}/>
         <button type="submit">Login</button>
       </form>
       <h1>Email: {email}</h1>
