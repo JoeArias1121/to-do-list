@@ -69,6 +69,7 @@ export default function Tasks() {
     const task = await res.json();
     if (task) {
       console.log(task);
+      setTasks((prevTasks: Task[]) => prevTasks.filter((task) => task.id !== id));
     } else {
       console.log("no task deleted")
     }
@@ -86,10 +87,10 @@ export default function Tasks() {
       </form>
       <ol>
         {tasks?.map((task: Task) => (
-          <>
-            <li key={task.id}>{task.title}</li>
+          <div key={task.id} className="task">
+            <li>{task.title}</li>
             <button className="delete" onClick={() => deleteTask(task.id)}>X</button>
-          </>
+          </div>
         ))}
       </ol>
     </>
