@@ -5,7 +5,7 @@ const prisma = new PrismaClient();
 
 // Fetch all tasks
 export async function GET() {
-  const tasks = await prisma.task.findMany();
+  const tasks = await prisma.task.findMany({ select: { id: true, title: true, completed: true } });
   return NextResponse.json(tasks);
 }
 
@@ -13,5 +13,14 @@ export async function GET() {
 export async function POST(req: Request) {
   const { title } = await req.json();
   const newTask = await prisma.task.create({ data: { title } });
-  return NextResponse.json(newTask);
+  const { createdAt, ...res } = newTask
+  console.log(res);
+  return NextResponse.json(res);
+}
+
+export async function DELETE(req: Request) {
+  const deleteTask = await req.json();
+  const { id } = deleteTask;
+  const task = await prisma.task.delete({ where: { id } });
+  return NextResponse.json(task);
 }

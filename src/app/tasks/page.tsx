@@ -2,9 +2,15 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
+type Task = {
+  id: number;
+  title: string;
+  completed?: boolean;
+};
+
 export default function Tasks() {
   const [user, setUser] = useState<string | null>(null);
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState<Task[]>([]);
   const [newTask, setNewTask] = useState("");
   const router = useRouter();
 
@@ -35,11 +41,37 @@ export default function Tasks() {
     router.push('/login');
   }
 
-  const addTask = (e: any) => {
-    fetch("/api/tasks", {
+  const addTask = async (e: any) => {
+    e.preventDefault();
+
+    const res = await fetch("/api/tasks", {
       method: "POST",
       body: JSON.stringify({ title: newTask }),
-    })
+    });
+    const data = await res.json();
+    console.log(data);
+    if (data) {
+      setTasks((prevTasks: Task[]) => [...prevTasks, data]);
+      console.log("task created")
+      setNewTask("");
+    } else {
+      console.log("no task created")
+    }
+  }
+
+  const deleteTask = async (id: number) => {
+    const res = await fetch("/api/tasks", {
+      method: "DELETE",
+      body: JSON.stringify({ id }),
+      headers: { "Content-Type": "application/json" },
+    });
+    
+    const task = await res.json();
+    if (task) {
+      console.log(task);
+    } else {
+      console.log("no task deleted")
+    }
   }
 
   return (
@@ -53,8 +85,11 @@ export default function Tasks() {
         <button type="submit">Add task</button>
       </form>
       <ol>
-        {tasks.map((task: any) => (
-          <li key={task.id}>{task.title}</li>
+        {tasks?.map((task: Task) => (
+          <>
+            <li key={task.id}>{task.title}</li>
+            <button className="delete" onClick={() => deleteTask(task.id)}>X</button>
+          </>
         ))}
       </ol>
     </>
