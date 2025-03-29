@@ -13,7 +13,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <nav>
+        <nav className="navbar">
           <Link href="/" className={pathname === "/" ? "active" : ""}>
             Home
           </Link>

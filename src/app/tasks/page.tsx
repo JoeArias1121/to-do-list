@@ -76,23 +76,24 @@ export default function Tasks() {
   }
 
   return (
-    <>
+    <div className="task-page">
       <button onClick={logOut}>Logout</button>
-      <h1>Tasks</h1>
-      {user ? <p>Welcome {user}</p> : <p>Loading...</p>}
-      <h2>Add a new task</h2>
-      <form onSubmit={addTask}>
-        <input type="text" placeholder="Task title" value={newTask} onChange={e => setNewTask(e.target.value)} />
-        <button type="submit">Add task</button>
-      </form>
-      <ol>
+      <div className="add-task">
+        {user ? <p>Welcome: {user}</p> : <p>Loading...</p>}
+        <h2>Add a new task</h2>
+        <form onSubmit={addTask}>
+          <input type="text" placeholder="Task title" value={newTask} onChange={e => setNewTask(e.target.value)} />
+          <button type="submit">Add task</button>
+        </form>
+      </div>
+      <div>
         {tasks?.map((task: Task) => (
-          <div key={task.id} className="task">
-            <li>{task.title}</li>
-            <button className="delete" onClick={() => deleteTask(task.id)}>X</button>
+          <div key={task.id} className="task-container">
+            <p className="task">{task.title}</p>
+            <button className="delete" onClick={() => deleteTask(task.id)}>Delete</button>
           </div>
         ))}
-      </ol>
-    </>
+      </div>
+    </div>
   );
 }

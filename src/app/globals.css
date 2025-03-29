@@ -46,3 +46,46 @@ a {
   text-decoration: underline;
   color: lightskyblue;
 }
+
+.navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5rem;
+  padding: 10px;
+  margin: .75rem;
+}
+
+.task-page{
+  display: flex;
+  flex-direction: column;
+  background-color: #212121;
+  height: 100vh;
+}
+
+.add-task {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+}
+
+.task-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.task {
+  width: 50%;
+  border: #aca8a8  solid 1px;
+  margin: .5rem;
+  padding: .5rem;
+}
+
+.delete {
+  background-color: red;
+  padding: .5rem;
+}
