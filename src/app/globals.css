@@ -43,8 +43,37 @@ a {
 
 .active {
   font-weight: bold;
-  text-decoration: underline;
   color: lightskyblue;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5rem;
+  margin: 0rem 2rem;
+}
+
+.welcome {
+  width: 15%;
+}
+
+.logout-container {
+  display: flex;
+  justify-content: right;
+  width: 15%;
+}
+
+.logout {
+  border-radius: 10%;
+  background-color: rgb(219, 90, 90);
+  border-color: black;
+  padding: .4rem;
+}
+
+.page {
+  min-height: 95dvh;
+  background-color: #212121;
 }
 
 .navbar {
@@ -54,13 +83,14 @@ a {
   gap: 5rem;
   padding: 10px;
   margin: .75rem;
+  width: 70%;
+  height: 5dvh;
 }
 
 .task-page{
   display: flex;
   flex-direction: column;
   background-color: #212121;
-  height: 100vh;
 }
 
 .add-task {

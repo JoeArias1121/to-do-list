@@ -27,20 +27,6 @@ export default function Tasks() {
     }
   }, [router]);
 
-  useEffect(() => {
-    const loggedInUser = "123@gmail.com"
-    if (loggedInUser === "123@gmail.com") {
-      setUser(loggedInUser as string)
-    } else {
-      router.push('/login')
-    }
-  }, [])
-
-  const logOut = () => {
-    sessionStorage.removeItem("email");
-    router.push('/login');
-  }
-
   const addTask = async (e: any) => {
     e.preventDefault();
 
@@ -77,9 +63,7 @@ export default function Tasks() {
 
   return (
     <div className="task-page">
-      <button onClick={logOut}>Logout</button>
       <div className="add-task">
-        {user ? <p>Welcome: {user}</p> : <p>Loading...</p>}
         <h2>Add a new task</h2>
         <form onSubmit={addTask}>
           <input type="text" placeholder="Task title" value={newTask} onChange={e => setNewTask(e.target.value)} />
