@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import "./globals.css";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import Button from "@/components/Button";
 
 export default function RootLayout({
   children,
@@ -44,7 +45,7 @@ export default function RootLayout({
             </Link>
           </nav>
           <div className="logout-container">
-            {user ? <button className="logout" onClick={login}>Logout</button> : <button className="login" onClick={logOut}>Login</button>}
+            {user ? <button className="logout" onClick={logOut}>Logout</button> : <button className="login" onClick={login}>Login</button>}
           </div>  
         </div>
         <div className="page">{children}</div>

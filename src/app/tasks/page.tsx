@@ -23,7 +23,7 @@ export default function Tasks() {
   useEffect(() => {
     const user = sessionStorage.getItem("email");
     if (!user) {
-      router.push('/login');
+      //router.push('/login');
     }
   }, [router]);
 
